@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _startGame;
     [SerializeField] Rigidbody2D _rigidbodyPlayer;
     [SerializeField] GameObject _pipeSpawner;
+    [SerializeField] GameObject _highScore;
+    [SerializeField] private Score _scoreScript;
 
 
     bool isPlaying = false;
@@ -44,6 +46,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _gameOverCanvas.SetActive(true);
+        if(!_scoreScript.isHighScore)
+        {
+            _highScore.SetActive(false);
+        }
 
         Time.timeScale = 0f;
     }
