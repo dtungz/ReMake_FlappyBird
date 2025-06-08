@@ -19,7 +19,7 @@ public class FlyBehavior : MonoBehaviour
 
     private void Update()
     {
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Space))
         {
             _rb.velocity = Vector2.up * _flyPow;
         }
