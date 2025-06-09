@@ -10,6 +10,7 @@ public class Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentScoreText;
     [SerializeField] private TextMeshProUGUI _hightScoreText;
     [SerializeField] private TextMeshProUGUI _overScore;
+    [SerializeField] AudioManager _audioManager;
 
     public bool isHighScore = false;
     private int _score;
@@ -38,6 +39,7 @@ public class Score : MonoBehaviour
     public void UpdateScore()
     {
         _score++;
+        _audioManager.PlayPointSound();
         _currentScoreText.text = _score.ToString();
         _overScore.text = _score.ToString();
         UpdateHighScore();

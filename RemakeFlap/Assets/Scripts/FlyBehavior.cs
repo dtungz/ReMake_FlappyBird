@@ -8,9 +8,11 @@ public class FlyBehavior : MonoBehaviour
 {
     [SerializeField] private float _flyPow = 1.5f;
     [SerializeField] private float _rotationSpeed = 10f;
+    [SerializeField] AudioManager _audioManager;
 
     
     private Rigidbody2D _rb;
+    bool isPlaying = true;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class FlyBehavior : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame || Input.GetKeyDown(KeyCode.Space))
         {
             _rb.velocity = Vector2.up * _flyPow;
+            if(isPlaying) _audioManager.PlayJumpSound();
         }
     }
     private void FixedUpdate()
@@ -31,6 +34,8 @@ public class FlyBehavior : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        _audioManager.PlayDieSound();
+        isPlaying = false;
         GameManager.instance.GameOver();
     }
 }
